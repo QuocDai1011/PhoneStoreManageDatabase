@@ -109,6 +109,47 @@ CREATE TABLE Orders (
     FOREIGN KEY (CartID) REFERENCES Cart(CartID)
 );
 
+-- thêm cột ghi chú, ngày vào làm, ngày sinh cho nhân viên
+ALTER TABLE EmployeeProfile
+ADD 
+    Note TEXT,
+    DateOfBirth DATE DEFAULT GETDATE(),
+    StartDate DATE DEFAULT GETDATE();
+
+-- thêm dữ liệu vào bảng Role để có thể tạo Account (nếu ko có tạo account sẽ lỗi vì ràng buộc khóa ngoại)
+INSERT INTO [dbo].[Role]
+           ([RoleName]
+           ,[RoleDescription])
+     VALUES
+           ('NV', 'Nhan vien cua cua hang'),
+		   ('KH', 'Khach hang cua cua hang'),
+		   ('AD', 'Admin cua cua hang');
+
+--thêm dữ liệu vào bảng Brand để thêm được sản phẩm
+INSERT INTO [dbo].[Brand]
+           ([BrandID]
+           ,[Name])
+     VALUES
+           (1, 'IPhone'),
+		   (2, 'SamSung'),
+		   (3, 'Oppo'),
+		   (4, 'Realme'),
+		   (5, 'Xiaome'),
+		   (6, 'Huawei'),
+		   (7, 'Nokia')
+
+--thêm dữ liệu vào bảng Category mới thêm được product, mấy cái laptop, ... chỉ là tượng trưng không cần dùng
+INSERT INTO [dbo].[Category]
+           ([CategoryID]
+           ,[Name])
+     VALUES
+           (1, 'Điện Thoại'),
+		   (2, 'Máy Tính Bảng'),
+		   (3, 'Laptop'),
+		   (4, 'Phụ Kiện')
+
+
+--tạo xong xuôi database rồi mới tạo trigger được
 CREATE TRIGGER trg_UpdateTotalCost_CartDetail
 ON CartDetail
 AFTER INSERT, UPDATE
