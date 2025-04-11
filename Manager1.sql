@@ -109,6 +109,23 @@ CREATE TABLE Orders (
     FOREIGN KEY (CartID) REFERENCES Cart(CartID)
 );
 
+-- them bang product detail (chi tiet san pham)
+CREATE TABLE ProductDetail (
+	ProductDetailID INT PRIMARY KEY IDENTITY(1,3),
+	ProductID INT NOT NULL,
+	Ram INT NOT NULL CHECK(Ram > 0),
+	Rom INT NOT NULL CHECK(Rom > 0),
+	Chip VARCHAR(20) NOT NULL,
+	ScreenSize FLOAT NOT NULL CHECK(ScreenSize > 0), -- kich thuoc man hinh (inch)
+	ScreenParameters VARCHAR(20) NOT NULL, -- thong so man hinh (vd: 1990 x 2000)
+	BatteryCapacity FLOAT NOT NULL CHECK(BatteryCapacity > 0), -- dung luong pin (mAh)
+	AdditionalAmount DECIMAL(10,2) NOT NULL CHECK(AdditionalAmount > 0), -- so tien cong them khi len nang cap phien ban
+	Color VARCHAR(15), -- mau dien thoai
+	Image VARCHAR(255), -- hinh anh cua dien thoai (luu ten file anh)
+	Description TEXT,
+	FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+)
+
 -- thêm cột ghi chú, ngày vào làm, ngày sinh cho nhân viên
 ALTER TABLE EmployeeProfile
 ADD 
