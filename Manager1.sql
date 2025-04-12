@@ -4,6 +4,16 @@
     RoleDescription TEXT
 );
 
+-- thêm dữ liệu vào bảng Role để có thể tạo Account (nếu ko có tạo account sẽ lỗi vì ràng buộc khóa ngoại)
+INSERT INTO [dbo].[Role]
+           ([RoleName]
+           ,[RoleDescription])
+     VALUES
+           ('NV', 'Nhan vien cua cua hang'),
+		   ('KH', 'Khach hang cua cua hang'),
+		   ('AD', 'Admin cua cua hang');
+
+
 CREATE TABLE Account (
     AccountID INT PRIMARY KEY IDENTITY(1,3),
     RoleID INT REFERENCES Role(RoleID),
@@ -16,6 +26,18 @@ CREATE TABLE Account (
     CreateAt DATE DEFAULT GETDATE(),
     UpdateAt DATE DEFAULT GETDATE()
 );
+
+INSERT INTO Account
+           ([RoleID], [Username], [Password])
+     VALUES
+			(13, 'nhan321', '9e/OPVJnY0OsDcJ+FTingw=='), --mat khau la "123nhan" day la nick Nhan vien cua Nhan
+		   (13, 'thong321', 'VykQbZhSM33xMygiPVA70w=='), --mat khau la "123thong" day la nick Nhan Vien cua Thong
+		   (16, 'nhan333', '9e/OPVJnY0OsDcJ+FTingw=='), --mat khau la "123nhan" day la nick Khach hang cua Nhan
+		   (16, 'thong333', 'VykQbZhSM33xMygiPVA70w=='), --mat khau la "123thong" day la nick Khach hang cua Thong
+           (19, 'nhan123', '9e/OPVJnY0OsDcJ+FTingw=='), --mat khau la "123nhan" day la nick Admin cua Nhan
+		   (19, 'thong123', 'VykQbZhSM33xMygiPVA70w=='), --mat khau la "123thong" day la nick Admin cua Thong
+		   (19, 'dung123', 'PdbfoiE/UbdvNSZ39jvO8w==') --mat khau la "123dung" day la nick Admin cua cua Co Dung
+
 
 CREATE TABLE EmployeeProfile (
     EmployeeID INT PRIMARY KEY IDENTITY(1,3),
@@ -32,6 +54,28 @@ CREATE TABLE EmployeeProfile (
     UpdateAt DATE DEFAULT GETDATE()
 );
 
+--them du lieu vao bang Employee
+INSERT INTO EmployeeProfile 
+    (AccountID, FirstName, LastName, Gender, Email, PhoneNumber, Address, Position, Salary)
+VALUES 
+    (31, 'Nhan', 'Dinh', 1, 'nhan321@example.com', '0123456789', '123 ABC Street', 'Nhân viên', 7000000.00),
+    (34, 'Thong', 'Tran', 1, 'thong321@example.com', '0987654321', '456 DEF Street', 'Nhân viên', 7200000.00),
+    (22, 'Nhan', 'Dinh', 1, 'nhan123@example.com', '0912345678', '789 GHI Street', 'Admin', 10000000.00),
+    (25, 'Thong', 'Le', 1, 'thong123@example.com', '0934567890', '321 JKL Street', 'Admin', 10500000.00),
+    (28, 'Dung', 'Tran', 0, 'dung123@example.com', '0961122334', '159 MNO Street', 'Admin', 11000000.00);
+
+
+
+
+
+-- thêm cột ghi chú, ngày vào làm, ngày sinh cho nhân viên
+ALTER TABLE EmployeeProfile
+ADD 
+    Note TEXT,
+    DateOfBirth DATE DEFAULT GETDATE(),
+    StartDate DATE DEFAULT GETDATE();
+
+
 CREATE TABLE CustomerProfile (
     CustomerID INT PRIMARY KEY IDENTITY(1,3),
     AccountID INT REFERENCES Account(AccountID),
@@ -45,15 +89,46 @@ CREATE TABLE CustomerProfile (
 
 );
 
+--them du lieu cho bang customer
+INSERT INTO CustomerProfile 
+    (AccountID, FirstName, LastName, Email, PhoneNumber, Address)
+VALUES 
+    (37, 'Nhan', 'Dinh', 'nhan333@example.com', '0901234567', '123 Phan Van Tri, Go Vap, TP.HCM'),
+    (40, 'Thong', 'Tran', 'thong333@example.com', '0937654321', '456 Le Van Sy, Tan Binh, TP.HCM');
+
+
 CREATE TABLE Category (
     CategoryID INT PRIMARY KEY, -- co the tu nhap ID loai hang
     Name VARCHAR(255) NOT NULL
 );
 
+--thêm dữ liệu vào bảng Category mới thêm được product, mấy cái laptop, ... chỉ là tượng trưng không cần dùng
+INSERT INTO [dbo].[Category]
+           ([CategoryID]
+           ,[Name])
+     VALUES
+           (1, 'Điện Thoại'),
+		   (2, 'Máy Tính Bảng'),
+		   (3, 'Laptop'),
+		   (4, 'Phụ Kiện')
+
 CREATE TABLE Brand (
     BrandID INT PRIMARY KEY, -- co the tu nhap ID cho brand
     Name VARCHAR(255) NOT NULL
 );
+
+--thêm dữ liệu vào bảng Brand để thêm được sản phẩm
+INSERT INTO [dbo].[Brand]
+           ([BrandID]
+           ,[Name])
+     VALUES
+           (1, 'IPhone'),
+		   (2, 'SamSung'),
+		   (3, 'Oppo'),
+		   (4, 'Realme'),
+		   (5, 'Xiaome'),
+		   (6, 'Huawei'),
+		   (7, 'Nokia')
 
 CREATE TABLE Product (
     ProductID INT PRIMARY KEY, -- co the tu nhap ID cho san pham
@@ -126,44 +201,6 @@ CREATE TABLE ProductDetail (
 	FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
 )
 
--- thêm cột ghi chú, ngày vào làm, ngày sinh cho nhân viên
-ALTER TABLE EmployeeProfile
-ADD 
-    Note TEXT,
-    DateOfBirth DATE DEFAULT GETDATE(),
-    StartDate DATE DEFAULT GETDATE();
-
--- thêm dữ liệu vào bảng Role để có thể tạo Account (nếu ko có tạo account sẽ lỗi vì ràng buộc khóa ngoại)
-INSERT INTO [dbo].[Role]
-           ([RoleName]
-           ,[RoleDescription])
-     VALUES
-           ('NV', 'Nhan vien cua cua hang'),
-		   ('KH', 'Khach hang cua cua hang'),
-		   ('AD', 'Admin cua cua hang');
-
---thêm dữ liệu vào bảng Brand để thêm được sản phẩm
-INSERT INTO [dbo].[Brand]
-           ([BrandID]
-           ,[Name])
-     VALUES
-           (1, 'IPhone'),
-		   (2, 'SamSung'),
-		   (3, 'Oppo'),
-		   (4, 'Realme'),
-		   (5, 'Xiaome'),
-		   (6, 'Huawei'),
-		   (7, 'Nokia')
-
---thêm dữ liệu vào bảng Category mới thêm được product, mấy cái laptop, ... chỉ là tượng trưng không cần dùng
-INSERT INTO [dbo].[Category]
-           ([CategoryID]
-           ,[Name])
-     VALUES
-           (1, 'Điện Thoại'),
-		   (2, 'Máy Tính Bảng'),
-		   (3, 'Laptop'),
-		   (4, 'Phụ Kiện')
 
 
 --tạo xong xuôi database rồi mới tạo trigger được
