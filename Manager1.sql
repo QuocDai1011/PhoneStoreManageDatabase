@@ -27,6 +27,7 @@ CREATE TABLE Account (
     UpdateAt DATE DEFAULT GETDATE()
 );
 
+--SELECT * FROM Role; coi cái RoleID để điền vào bên dưới nha Cái RoleID chắc chắn sẽ không khớp đâu
 INSERT INTO Account
            ([RoleID], [Username], [Password])
      VALUES
@@ -54,7 +55,7 @@ CREATE TABLE EmployeeProfile (
     UpdateAt DATE DEFAULT GETDATE()
 );
 
---them du lieu vao bang Employee
+-- SELECT * FROM Account; để coi AccountID tương ứng rồi đổi lại phía bên dưới nha, chắc chắn là không khớp đâu
 INSERT INTO EmployeeProfile 
     (AccountID, FirstName, LastName, Gender, Email, PhoneNumber, Address, Position, Salary)
 VALUES 
@@ -89,7 +90,7 @@ CREATE TABLE CustomerProfile (
 
 );
 
---them du lieu cho bang customer
+--SELECT * FROM Account; để coi AccountID tương ứng rồi đổi lại phía bên dưới nha, chắc chắn là không khớp đâu
 INSERT INTO CustomerProfile 
     (AccountID, FirstName, LastName, Email, PhoneNumber, Address)
 VALUES 
