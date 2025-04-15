@@ -143,6 +143,24 @@ CREATE TABLE Product (
     FOREIGN KEY (BrandID) REFERENCES Brand(BrandID)
 );
 
+ --xoa cot hinh anh trong bang product -- sua ma contrainst lai nha
+ ALTER TABLE Product
+DROP CONSTRAINT CK__Product__Price__534D60F1;
+
+ ALTER TABLE Product
+DROP CONSTRAINT CK__Product__StockQu__5441852A;
+
+ ALTER TABLE Product
+DROP COLUMN [Image], [Price], [StockQuantity];
+
+--them du lieu vao bang product
+INSERT INTO [dbo].[Product]
+           ([ProductID],[CategoryID],[BrandID],[Name],[Description])
+     VALUES
+           (1, 1, 'Iphone', 'Iphone 14', 'Dien thoai')
+
+
+
 CREATE TABLE Cart (
     CartID INT PRIMARY KEY IDENTITY(1,3),  -- Tự tăng
     AccountID INT NOT NULL,                 -- Giỏ hàng của ai?
@@ -201,6 +219,62 @@ CREATE TABLE ProductDetail (
 	Description TEXT,
 	FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
 )
+
+--them cot price va so hang ton kho vao productdetail
+ALTER TABLE ProductDetail
+ADD 
+    Price DECIMAL(10,2) NOT NULL CHECK (Price > 0),
+    StockQuantity INT NOT NULL CHECK (StockQuantity >= 0);
+
+-- bo cot AdditionalAmount
+ALTER TABLE ProductDetail
+DROP CONSTRAINT CK__ProductDe__Addit__06CD04F7;
+ALTER TABLE ProductDetail
+DROP COLUMN AdditionalAmount;
+
+--them du lieu vao bang productdetail
+INSERT INTO ProductDetail (
+    ProductID, Ram, Rom, Chip, ScreenSize, ScreenParameters,
+    BatteryCapacity, AdditionalAmount, Color, Image, Description,
+    Price, StockQuantity
+)
+VALUES (
+    1, 8, 128, 'Snapdragon 8 Gen 2', 6.7, '2400 x 1080',
+    5000, 100.00, 'Black', 'phone_black.jpg', 'High-end smartphone with great performance.',
+    999.99, 50
+);
+
+-- doi het tat ca varchar sang nvarchar de luu tieng viet
+-- Table: Role
+ALTER TABLE Role ALTER COLUMN RoleName NVARCHAR(10);
+
+
+-- Table: EmployeeProfile
+ALTER TABLE EmployeeProfile ALTER COLUMN FirstName NVARCHAR(255);
+ALTER TABLE EmployeeProfile ALTER COLUMN LastName NVARCHAR(255);
+ALTER TABLE EmployeeProfile ALTER COLUMN Position NVARCHAR(255);
+
+-- Table: CustomerProfile
+ALTER TABLE CustomerProfile ALTER COLUMN FirstName NVARCHAR(255);
+ALTER TABLE CustomerProfile ALTER COLUMN LastName NVARCHAR(255);
+
+-- Table: Category
+ALTER TABLE Category ALTER COLUMN Name NVARCHAR(255);
+
+-- Table: Brand
+ALTER TABLE Brand ALTER COLUMN Name NVARCHAR(255);
+
+-- Table: Product
+ALTER TABLE Product ALTER COLUMN Name NVARCHAR(255);
+
+-- Table: ProductDetail
+ALTER TABLE ProductDetail ALTER COLUMN Color NVARCHAR(15);
+
+-- Table: Payment
+ALTER TABLE Payment ALTER COLUMN PaymentType NVARCHAR(255);
+
+-- Table: Orders
+ALTER TABLE Orders ALTER COLUMN Status NVARCHAR(50);
 
 
 
