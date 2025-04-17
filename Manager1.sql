@@ -1,4 +1,8 @@
-﻿CREATE TABLE Role (
+﻿-- tao tat ca cac bang truoc va o cuoi file co doi tu varchar sang nvarchar de su dung tieng viet
+
+
+
+CREATE TABLE Role (
     RoleID INT PRIMARY KEY IDENTITY(1, 3),
     RoleName VARCHAR(10) NOT NULL,
     RoleDescription TEXT
@@ -157,8 +161,39 @@ DROP COLUMN [Image], [Price], [StockQuantity];
 INSERT INTO [dbo].[Product]
            ([ProductID],[CategoryID],[BrandID],[Name],[Description])
      VALUES
-           (1, 1, 'Iphone', 'Iphone 14', 'Dien thoai')
-
+           (1, 1, 1, 'Iphone 14', 'Dien thoai'),
+		   (2, 1, 1, 'Iphone 14 Plus', 'Dien thoai'),
+		   (3, 1, 1, 'Iphone 14 Pro', 'Dien thoai'),
+		   (4, 1, 1, 'Iphone 14 Pro Max', 'Dien thoai'),
+		   (5, 1, 1, 'Iphone 15', 'Dien thoai'),
+		   (6, 1, 1, 'Iphone 15 Plus', 'Dien thoai'),
+		   (7, 1, 1, 'Iphone 15 Pro', 'Dien thoai'),
+		   (8, 1, 1, 'Iphone 15 Pro Max', 'Dien thoai'),
+		   (9, 1, 1, 'Iphone 16', 'Dien thoai'),
+		   (10, 1, 1, 'Iphone 16 Plus', 'Dien thoai'),
+		   (11, 1, 1, 'Iphone 16 Pro', 'Dien thoai'),
+		   (12, 1, 1, 'Iphone 16 Pro Max', 'Dien thoai'),
+		   (13, 1, 2, 'Samsung Galaxy A06', 'Dien thoai'),
+		   (14, 1, 2, 'Samsung Galaxy A16', 'Dien thoai'),
+		   (15, 1, 2, 'Samsung Galaxy A36', 'Dien thoai'),
+		   (16, 1, 2, 'Samsung Galaxy A56', 'Dien thoai'),
+		   (17, 1, 2, 'Samsung Galaxy S24 Ultra', 'Dien thoai'),
+		   (18, 1, 2, 'Samsung Galaxy S25', 'Dien thoai'),
+		   (19, 1, 2, 'Samsung Galaxy S25 Plus', 'Dien thoai'),
+		   (20, 1, 2, 'Samsung Galaxy Z Flip 6', 'Dien thoai'),
+		   (21, 1, 3, 'Oppo A18', 'Dien thoai'),
+		   (22, 1, 3, 'Oppo A38', 'Dien thoai'),
+		   (23, 1, 3, 'Oppo A58', 'Dien thoai'),
+		   (24, 1, 3, 'Oppo A79', 'Dien thoai'),
+		   (25, 1, 3, 'Oppo Find N5', 'Dien thoai'),
+		   (26, 1, 3, 'Oppo Find X8', 'Dien thoai'),
+		   (27, 1, 3, 'Oppo Renno 12', 'Dien thoai'),
+		   (28, 1, 3, 'Oppo Renno 13F', 'Dien thoai'),
+		   (29, 1, 4, 'Realme 11 Pro', 'Dien thoai'),
+		   (30, 1, 4, 'Realme 13 Plus', 'Dien thoai'),
+		   (31, 1, 4, 'Realme C60', 'Dien thoai'),
+		   (32, 1, 4, 'Realme C65', 'Dien thoai'),
+		   (33, 1, 4, 'Realme Note 60', 'Dien thoai')
 
 
 CREATE TABLE Cart (
@@ -238,6 +273,7 @@ INSERT INTO ProductDetail (
     BatteryCapacity, AdditionalAmount, Color, Image, Description,
     Price, StockQuantity
 )
+
 VALUES (
     1, 8, 128, 'Snapdragon 8 Gen 2', 6.7, '2400 x 1080',
     5000, 100.00, 'Black', 'phone_black.jpg', 'High-end smartphone with great performance.',
