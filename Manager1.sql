@@ -244,9 +244,9 @@ CREATE TABLE ProductDetail (
 	ProductID INT NOT NULL,
 	Ram INT NOT NULL CHECK(Ram > 0),
 	Rom INT NOT NULL CHECK(Rom > 0),
-	Chip VARCHAR(20) NOT NULL,
+	Chip NVARCHAR(100) NOT NULL,
 	ScreenSize FLOAT NOT NULL CHECK(ScreenSize > 0), -- kich thuoc man hinh (inch)
-	ScreenParameters VARCHAR(20) NOT NULL, -- thong so man hinh (vd: 1990 x 2000)
+	ScreenParameters VARCHAR(20) NOT NULL, -- thong so man hinh (vd: 1990 x 2000) (pixels)
 	BatteryCapacity FLOAT NOT NULL CHECK(BatteryCapacity > 0), -- dung luong pin (mAh)
 	AdditionalAmount DECIMAL(10,2) NOT NULL CHECK(AdditionalAmount > 0), -- so tien cong them khi len nang cap phien ban
 	Color VARCHAR(15), -- mau dien thoai
@@ -259,7 +259,12 @@ CREATE TABLE ProductDetail (
 ALTER TABLE ProductDetail
 ADD 
     Price DECIMAL(10,2) NOT NULL CHECK (Price > 0),
-    StockQuantity INT NOT NULL CHECK (StockQuantity >= 0);
+    StockQuantity INT NOT NULL CHECK (StockQuantity >= 0),
+	CameraFront VARCHAR(20) NOT NULL, -- camera truoc (MP - MegaPixels)
+	CameraRear NVARCHAR(50) NOT NULL, -- camera sau (MP - MegaPixels)
+	ScreenTechnology NVARCHAR(50) NOT NULL, -- Cong nghe man hinh- Oled, Full HD
+	ScanFrequency VARCHAR(20) NOT NULL -- tan so quet (HZ)
+
 
 -- bo cot AdditionalAmount
 ALTER TABLE ProductDetail
@@ -268,17 +273,69 @@ ALTER TABLE ProductDetail
 DROP COLUMN AdditionalAmount;
 
 --them du lieu vao bang productdetail
-INSERT INTO ProductDetail (
-    ProductID, Ram, Rom, Chip, ScreenSize, ScreenParameters,
-    BatteryCapacity, AdditionalAmount, Color, Image, Description,
-    Price, StockQuantity
-)
+INSERT INTO [dbo].[ProductDetail]
+           ([ProductID], [Ram], [Rom], [Chip], [ScreenSize], [ScreenParameters], [BatteryCapacity],
+		   [Color], [Image], [Description], [Price], [StockQuantity], [CameraFront], [CameraRear], [ScreenTechnology], [ScanFrequency])
+     VALUES
+			--Iphone 14 6GB Ram 128GB Rom 
+           (1, 6, 128, 'Apple A15 Bionic 6 nhân', 6.1, '2532 x 1170', 3279,
+		   'Đen', 'Iphone/Iphone14-Black.jpg', 'Điện thoại của nhãn hàng Iphone',
+		   12890000, 137, 'Rộng: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (1, 6, 128, 'Apple A15 Bionic 6 nhân', 6.1, '2532 x 1170', 3279,
+		   'Xanh da trời', 'Iphone/Iphone14-Blue.jpg', 'Điện thoại của nhãn hàng Iphone',
+		   12890000, 137, 'Rộng: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (1, 6, 128, 'Apple A15 Bionic 6 nhân', 6.1, '2532 x 1170', 3279,
+		   'Trắng', 'Iphone/Iphone14-White.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   12890000, 126, 'Rộng: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		    (1, 6, 128, 'Apple A15 Bionic 6 nhân', 6.1, '2532 x 1170', 3279,
+		   'Đỏ', 'Iphone/Iphone14-Red.jpeg', 'Điện thoại của nhãn hàng Iphone', 
+		   12890000, 123, 'Rộng: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (1, 6, 128, 'Apple A15 Bionic 6 nhân', 6.1, '2532 x 1170', 3279,
+		   'Tím', 'Iphone/Iphone14-Purple.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   12890000, 118, 'Rộng: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (1, 6, 128, 'Apple A15 Bionic 6 nhân', 6.1, '2532 x 1170', 3279,
+		   'Vàng', 'Iphone/Iphone14-Yellow.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   12890000, 127, 'Rộng: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   --Iphone 14 6GB Ram 256GB Rom
+		   (1, 6, 256, 'Apple A15 Bionic 6 nhân', 6.1, '2532 x 1170', 3279,
+		   'Đen', 'Iphone/Iphone14-Black.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   15990000, 134, 'Rộng: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (1, 6, 256, 'Apple A15 Bionic 6 nhân', 6.1, '2532 x 1170', 3279,
+		   'Xanh da trời', 'Iphone/Iphone14-Blue.jpg', 'Điện thoại của nhãn hàng Iphone',
+		   15990000, 149, 'Rộng: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (1, 6, 256, 'Apple A15 Bionic 6 nhân', 6.1, '2532 x 1170', 3279,
+		   'Trắng', 'Iphone/Iphone14-White.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   15990000, 126, 'Rộng: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		    (1, 6, 256, 'Apple A15 Bionic 6 nhân', 6.1, '2532 x 1170', 3279,
+		   'Đỏ', 'Iphone/Iphone14-Red.jpeg', 'Điện thoại của nhãn hàng Iphone', 
+		   15990000, 120, 'Rộng: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (1, 6, 256, 'Apple A15 Bionic 6 nhân', 6.1, '2532 x 1170', 3279,
+		   'Tím', 'Iphone/Iphone14-Purple.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   15990000, 121, 'Rộng: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (1, 6, 256, 'Apple A15 Bionic 6 nhân', 6.1, '2532 x 1170', 3279,
+		   'Vàng', 'Iphone/Iphone14-Yellow.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   15990000, 142, 'Rộng: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   --Iphone 14 Plus 6GB Ram 128GB Rom
+		   (2, 6, 128, 'Apple A15 Bionic 6 nhân', 6.7, '2770 x 1284', 4325,
+		   'Đen', 'Iphone/Iphone14-Black.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   17990000, 133, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (2, 6, 128, 'Apple A15 Bionic 6 nhân', 6.7, '2770 x 1284', 4325,
+		   'Xanh da trời', 'Iphone/Iphone14-Blue.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   17990000, 116, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (2, 6, 128, 'Apple A15 Bionic 6 nhân', 6.7, '2770 x 1284', 4325,
+		   'Trắng', 'Iphone/Iphone14-White.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   17990000, 110, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		    (2, 6, 128, 'Apple A15 Bionic 6 nhân', 6.7, '2770 x 1284', 4325,
+		   'Đỏ', 'Iphone/Iphone14-Red.jpeg', 'Điện thoại của nhãn hàng Iphone', 
+		   17990000, 136, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (2, 6, 128, 'Apple A15 Bionic 6 nhân', 6.7, '2770 x 1284', 4325,
+		   'Tím', 'Iphone/Iphone14-Purple.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   17990000, 128, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (2, 6, 128, 'Apple A15 Bionic 6 nhân', 6.7, '2770 x 1284', 4325,
+		   'Vàng', 'Iphone/Iphone14-Yellow.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   17990000, 149, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
 
-VALUES (
-    1, 8, 128, 'Snapdragon 8 Gen 2', 6.7, '2400 x 1080',
-    5000, 100.00, 'Black', 'phone_black.jpg', 'High-end smartphone with great performance.',
-    999.99, 50
-);
+
 
 -- doi het tat ca varchar sang nvarchar de luu tieng viet
 -- Table: Role
@@ -304,7 +361,7 @@ ALTER TABLE Brand ALTER COLUMN Name NVARCHAR(255);
 ALTER TABLE Product ALTER COLUMN Name NVARCHAR(255);
 
 -- Table: ProductDetail
-ALTER TABLE ProductDetail ALTER COLUMN Color NVARCHAR(15);
+ALTER TABLE ProductDetail ALTER COLUMN Color NVARCHAR(50);
 
 -- Table: Payment
 ALTER TABLE Payment ALTER COLUMN PaymentType NVARCHAR(255);
