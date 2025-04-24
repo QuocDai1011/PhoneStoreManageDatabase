@@ -1,5 +1,5 @@
 ﻿-- tao tat ca cac bang truoc va o cuoi file co doi tu varchar sang nvarchar de su dung tieng viet
-
+-- tao tung bang va chay lenh them xoa column ngay phia duoi lenh tao bang
 
 
 CREATE TABLE Role (
@@ -193,7 +193,9 @@ INSERT INTO [dbo].[Product]
 		   (30, 1, 4, 'Realme 13 Plus', 'Dien thoai'),
 		   (31, 1, 4, 'Realme C60', 'Dien thoai'),
 		   (32, 1, 4, 'Realme C65', 'Dien thoai'),
-		   (33, 1, 4, 'Realme Note 60', 'Dien thoai')
+		   (33, 1, 4, 'Realme Note 60', 'Dien thoai'),
+		   (34, 1, 4, 'Samsung S25 Ultra', 'Dien thoai'),
+
 
 
 CREATE TABLE Cart (
@@ -317,25 +319,116 @@ INSERT INTO [dbo].[ProductDetail]
 		   15990000, 142, 'Rộng: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
 		   --Iphone 14 Plus 6GB Ram 128GB Rom
 		   (2, 6, 128, 'Apple A15 Bionic 6 nhân', 6.7, '2770 x 1284', 4325,
-		   'Đen', 'Iphone/Iphone14-Black.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   'Đen', 'Iphone/Iphone14Plus-Black.jpg', 'Điện thoại của nhãn hàng Iphone', 
 		   17990000, 133, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
 		   (2, 6, 128, 'Apple A15 Bionic 6 nhân', 6.7, '2770 x 1284', 4325,
-		   'Xanh da trời', 'Iphone/Iphone14-Blue.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   'Xanh da trời', 'Iphone/Iphone14Plus-Blue.jpg', 'Điện thoại của nhãn hàng Iphone', 
 		   17990000, 116, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
 		   (2, 6, 128, 'Apple A15 Bionic 6 nhân', 6.7, '2770 x 1284', 4325,
-		   'Trắng', 'Iphone/Iphone14-White.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   'Trắng', 'Iphone/Iphone14Plus-White.jpg', 'Điện thoại của nhãn hàng Iphone', 
 		   17990000, 110, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
 		    (2, 6, 128, 'Apple A15 Bionic 6 nhân', 6.7, '2770 x 1284', 4325,
-		   'Đỏ', 'Iphone/Iphone14-Red.jpeg', 'Điện thoại của nhãn hàng Iphone', 
+		   'Đỏ', 'Iphone/Iphone14Plus-Red.jpeg', 'Điện thoại của nhãn hàng Iphone', 
 		   17990000, 136, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
 		   (2, 6, 128, 'Apple A15 Bionic 6 nhân', 6.7, '2770 x 1284', 4325,
-		   'Tím', 'Iphone/Iphone14-Purple.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   'Tím', 'Iphone/Iphone14Plus-Purple.jpg', 'Điện thoại của nhãn hàng Iphone', 
 		   17990000, 128, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
 		   (2, 6, 128, 'Apple A15 Bionic 6 nhân', 6.7, '2770 x 1284', 4325,
-		   'Vàng', 'Iphone/Iphone14-Yellow.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   'Vàng', 'Iphone/Iphone14Plus-Yellow.jpg', 'Điện thoại của nhãn hàng Iphone', 
 		   17990000, 149, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   --Iphone 14 Plus 6GB Ram 256GB Rom
+		   (2, 6, 256, 'Apple A15 Bionic 6 nhân', 6.7, '2770 x 1284', 4325,
+		   'Đen', 'Iphone/Iphone14-Black.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   19490000, 133, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (2, 6, 256, 'Apple A15 Bionic 6 nhân', 6.7, '2770 x 1284', 4325,
+		   'Xanh da trời', 'Iphone/Iphone14-Blue.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   19490000, 116, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (2, 6, 256, 'Apple A15 Bionic 6 nhân', 6.7, '2770 x 1284', 4325,
+		   'Trắng', 'Iphone/Iphone14-White.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   19490000, 110, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		    (2, 6, 256, 'Apple A15 Bionic 6 nhân', 6.7, '2770 x 1284', 4325,
+		   'Đỏ', 'Iphone/Iphone14-Red.jpeg', 'Điện thoại của nhãn hàng Iphone', 
+		   19490000, 136, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (2, 6, 256, 'Apple A15 Bionic 6 nhân', 6.7, '2770 x 1284', 4325,
+		   'Tím', 'Iphone/Iphone14-Purple.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   19490000, 128, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (2, 6, 256, 'Apple A15 Bionic 6 nhân', 6.7, '2770 x 1284', 4325,
+		   'Vàng', 'Iphone/Iphone14-Yellow.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   19490000, 149, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   --Iphone 14 Pro 6GB Ram 128GB Rom
+		   (3, 6, 128, 'Apple A15 Bionic 6 nhân', 6.1, '2770 x 1284', 4325,
+		   'Đen', 'Iphone/Iphone14Pro-Black.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   22990000, 133, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (3, 6, 128, 'Apple A15 Bionic 6 nhân', 6.1, '2770 x 1284', 4325,
+		   'Trắng', 'Iphone/Iphone14Pro-Silver.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   22990000, 110, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (3, 6, 128, 'Apple A15 Bionic 6 nhân', 6.1, '2770 x 1284', 4325,
+		   'Tím', 'Iphone/Iphone14Pro-Purple.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   22990000, 128, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (3, 6, 128, 'Apple A15 Bionic 6 nhân', 6.1, '2770 x 1284', 4325,
+		   'Vàng', 'Iphone/Iphone14Pro-Yellow.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   22990000, 149, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   --Iphone 14 Pro 6GB Ram 512GB Rom
+		   (3, 6, 512, 'Apple A15 Bionic 6 nhân', 6.1, '2770 x 1284', 4325,
+		   'Đen', 'Iphone/Iphone14Pro-Black.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   28990000, 133, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (3, 6, 512, 'Apple A15 Bionic 6 nhân', 6.1, '2770 x 1284', 4325,
+		   'Trắng', 'Iphone/Iphone14Pro-Silver.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   28990000, 110, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (3, 6, 512, 'Apple A15 Bionic 6 nhân', 6.1, '2770 x 1284', 4325,
+		   'Tím', 'Iphone/Iphone14Pro-Purple.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   28990000, 128, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (3, 6, 512, 'Apple A15 Bionic 6 nhân', 6.1, '2770 x 1284', 4325,
+		   'Vàng', 'Iphone/Iphone14Pro-Yellow.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   28990000, 149, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   --Iphone 14 ProMax 6GB Ram 128Gb Rom
+		   (4, 6, 128, 'Apple A16 Bionic 6 nhân', 6.7, '2790 x 1290', 4325,
+		   'Đen', 'Iphone/Iphone14ProMax-Black.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   25590000, 133, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (4, 6, 128, 'Apple A16 Bionic 6 nhân', 6.7, '2790 x 1290', 4325,
+		   'Trắng', 'Iphone/Iphone14ProMax-Silver.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   25590000, 110, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (4, 6, 128, 'Apple A16 Bionic 6 nhân', 6.7, '2790 x 1290', 4325,
+		   'Tím', 'Iphone/Iphone14ProMax-Purple.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   25590000, 128, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
+		   (4, 6, 128, 'Apple A16 Bionic 6 nhân', 6.7, '2790 x 1290', 4325,
+		   'Vàng', 'Iphone/Iphone14ProMax-Yellow.jpg', 'Điện thoại của nhãn hàng Iphone', 
+		   25590000, 149, 'Chính: 12MP, Siêu rộng: 12MP', '12MP', 'Super Retina XDR OLED', '60Hz'),
 
+		   -- Oppo Find X8 16GB Ram 512GB Rom
+		   (26, 16, 512, 'MediaTek Dimensity 9400', 6.59, '720 x 1612', 5000,
+		   'Trắng', 'Oppo/OppoFindX8-White.png', 'Điện thoại của nhãn hàng Oppo', 
+		   16990000, 133, 'Chính: 50MP, rộng: 50MP, chân dung: 50MP', '32MP', 'AMOLED', '120Hz'),
+		   (26, 16, 512, 'MediaTek Dimensity 9400', 6.59, '720 x 1612', 5000,
+		   'Đen', 'Oppo/OppoFindX8-Black.jpg', 'Điện thoại của nhãn hàng Oppo', 
+		   16990000, 133, 'Chính: 50MP, rộng: 50MP, chân dung: 50MP', '32MP', 'AMOLED', '120Hz'),
+		   -- Oppo A38 6GB Ram 128GB Rom
+		   (22, 6, 128, 'MediaTek Helio G85 8 nhân', 6.56, '720 x 1612', 5000,
+		   'Vàng', 'Oppo/OppoA38-Yellow.jpg', 'Điện thoại của nhãn hàng Oppo', 
+		   3990000, 133, 'Chính: 50MP, phụ: 2MP', '5MP', 'HD+', '90Hz'),
+		   (22, 6, 128, 'MediaTek Helio G85 8 nhân', 6.56, '720 x 1612', 5000,
+		   'Đen', 'Oppo/OppoA38-Black.jpg', 'Điện thoại của nhãn hàng Oppo', 
+		   3990000, 133, 'Chính: 50MP, phụ: 2MP', '5MP', 'HD+', '90Hz'),
 
+		   -- Realme 11 pro 8gb ram 256gb rom
+		   (29, 8, 256, 'Mediatek Dimensity 7050 5G', 6.7, '1080 x 2412', 5000,
+		   'Trắng', 'Realme/Realme11Pro-White.jpg', 'Điện thoại của nhãn hàng Realme', 
+		   5190000, 133, 'Rộng: 100MP, sâu: 2MP', '16MP', 'AMOLED', '120Hz'),
+		   (29, 8, 256, 'Mediatek Dimensity 7050 5G', 6.7, '1080 x 2412', 5000,
+		   'Xanh lá', 'Realme/Realme11Pro-Green.jpg', 'Điện thoại của nhãn hàng Realme', 
+		   5190000, 133, 'Rộng: 100MP, sâu: 2MP', '16MP', 'AMOLED', '120Hz'),
+
+		   -- SamSung S25 Ultra 12gb ram 256 gb rom
+		   (34, 12, 256, 'Snapdragon 8 Elite dành cho Galaxy (3nm)', 6.9, '3120 x 1440', 5000,
+		   'Trắng', 'SamSung/SamSungS25Ultra-White.jpg', 'Điện thoại của nhãn hàng Samsung', 
+		   5190000, 133, 'Rộng: 200MP, siêu rộng: 50MP, Tele(5x): 50MP, Tele(3x): 10MP', '12MP', 'Quad HD+', '120Hz'),
+		   (34, 12, 256, 'Snapdragon 8 Elite dành cho Galaxy (3nm)', 6.9, '3120 x 1440', 5000,
+		   'Đen', 'SamSung/SamSungS25Ultra-Black.jpg', 'Điện thoại của nhãn hàng Samsung', 
+		   5190000, 133, 'Rộng: 200MP, siêu rộng: 50MP, Tele(5x): 50MP, Tele(3x): 10MP', '12MP', 'Quad HD+', '120Hz'),
+		   --Samsung galaxy a06 4gb ram 128gb rom
+		   (13, 4, 128, 'MediaTek Helio G85', 6.7, '720 x 1600', 5000,
+		   'Đen', 'SamSung/SamSungGalaxyA06-Black.png', 'Điện thoại của nhãn hàng Samsung', 
+		   2990000, 133, 'Chính: 50MP, phụ: 2MP', '8MP', 'PLS LCD', '60Hz'),
 
 -- doi het tat ca varchar sang nvarchar de luu tieng viet
 -- Table: Role
