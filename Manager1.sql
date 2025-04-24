@@ -487,7 +487,7 @@ ALTER TABLE [dbo].[Product] ADD Image VARCHAR(255);
 SELECT *
 FROM ProductDetail pd
 JOIN Product as p ON pd.ProductID = p.ProductID
-WHERE p.Name LIKE '%Samsung%';
+WHERE p.Name LIKE '%asdfsf%';
 
 -- Ip
 
