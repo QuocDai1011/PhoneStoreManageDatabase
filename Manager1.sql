@@ -161,6 +161,7 @@ DROP COLUMN [Image], [Price], [StockQuantity];
 INSERT INTO [dbo].[Product]
            ([ProductID],[CategoryID],[BrandID],[Name],[Description])
      VALUES
+		(34, 1, 4, 'Samsung S25 Ultra', 'Dien thoai'),
            (1, 1, 1, 'Iphone 14', 'Dien thoai'),
 		   (2, 1, 1, 'Iphone 14 Plus', 'Dien thoai'),
 		   (3, 1, 1, 'Iphone 14 Pro', 'Dien thoai'),
@@ -194,7 +195,7 @@ INSERT INTO [dbo].[Product]
 		   (31, 1, 4, 'Realme C60', 'Dien thoai'),
 		   (32, 1, 4, 'Realme C65', 'Dien thoai'),
 		   (33, 1, 4, 'Realme Note 60', 'Dien thoai'),
-		   (34, 1, 4, 'Samsung S25 Ultra', 'Dien thoai'),
+		   
 
 
 
@@ -277,7 +278,7 @@ DROP COLUMN AdditionalAmount;
 --them du lieu vao bang productdetail
 INSERT INTO [dbo].[ProductDetail]
            ([ProductID], [Ram], [Rom], [Chip], [ScreenSize], [ScreenParameters], [BatteryCapacity],
-		   [Color], [Image], [Description], [Price], [StockQuantity], [CameraFront], [CameraRear], [ScreenTechnology], [ScanFrequency])
+		   [Color], [Image], [Description], [Price], [StockQuantity], [CameraRear], [CameraFront], [ScreenTechnology], [ScanFrequency])
      VALUES
 			--Iphone 14 6GB Ram 128GB Rom 
            (1, 6, 128, 'Apple A15 Bionic 6 nhân', 6.1, '2532 x 1170', 3279,
@@ -421,14 +422,14 @@ INSERT INTO [dbo].[ProductDetail]
 		   -- SamSung S25 Ultra 12gb ram 256 gb rom
 		   (34, 12, 256, 'Snapdragon 8 Elite dành cho Galaxy (3nm)', 6.9, '3120 x 1440', 5000,
 		   'Trắng', 'SamSung/SamSungS25Ultra-White.jpg', 'Điện thoại của nhãn hàng Samsung', 
-		   5190000, 133, 'Rộng: 200MP, siêu rộng: 50MP, Tele(5x): 50MP, Tele(3x): 10MP', '12MP', 'Quad HD+', '120Hz'),
+		   5190000, 133, 'Rộng: 200MP, siêu rộng: 50MP', '12MP', 'Quad HD+', '120Hz'),
 		   (34, 12, 256, 'Snapdragon 8 Elite dành cho Galaxy (3nm)', 6.9, '3120 x 1440', 5000,
 		   'Đen', 'SamSung/SamSungS25Ultra-Black.jpg', 'Điện thoại của nhãn hàng Samsung', 
-		   5190000, 133, 'Rộng: 200MP, siêu rộng: 50MP, Tele(5x): 50MP, Tele(3x): 10MP', '12MP', 'Quad HD+', '120Hz'),
+		   5190000, 133, 'Rộng: 200MP, siêu rộng: 50MP', '12MP', 'Quad HD+', '120Hz'),
 		   --Samsung galaxy a06 4gb ram 128gb rom
 		   (13, 4, 128, 'MediaTek Helio G85', 6.7, '720 x 1600', 5000,
 		   'Đen', 'SamSung/SamSungGalaxyA06-Black.png', 'Điện thoại của nhãn hàng Samsung', 
-		   2990000, 133, 'Chính: 50MP, phụ: 2MP', '8MP', 'PLS LCD', '60Hz'),
+		   2990000, 133, 'Chính: 50MP, phụ: 2MP', '8MP', 'PLS LCD', '60Hz')
 
 -- doi het tat ca varchar sang nvarchar de luu tieng viet
 -- Table: Role
@@ -483,6 +484,10 @@ END;
 ALTER TABLE [dbo].[Product] ADD Image VARCHAR(255);
 
 
+SELECT *
+FROM ProductDetail pd
+JOIN Product as p ON pd.ProductID = p.ProductID
+WHERE p.Name LIKE '%Samsung%';
 
-
+-- Ip
 
