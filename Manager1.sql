@@ -891,6 +891,10 @@ FROM ProductDetail pd
 JOIN Product as p ON pd.ProductID = p.ProductID
 WHERE p.Name LIKE '%asdfsf%';
 
+
+
+
+
 --xoa rang buoc truoc khi xoa cot categoryID
 ALTER TABLE [dbo].[Product]
 DROP CONSTRAINT FK__Product__Categor__5535A963;
@@ -940,4 +944,79 @@ ALTER TABLE ProductDetail
 ADD CONSTRAINT FK_ProductDetail_Color
 FOREIGN KEY (ColorID) REFERENCES ColorOfProduct(ColorOfProductID);
 
---Tới đây bạn kéo lên phần thêm dữ liệu ProductDetail và thêm tất cả dữ liệu vô như hồi trước nha 
+--Tới đây bạn kéo lên phần thêm dữ liệu ProductDetail và thêm tất cả dữ liệu vô như hồi trước nha
+
+-- xoa bang Payment (Phuong thuc thanh toan)
+-- chay cau lenh xoa cot sau day de lay ma rang buoc roi copy paste xuong cau lenh phia duoi de xoa rang buoc truoc moi xoa cot duoc
+ALTER TABLE [dbo].[Orders] DROP COLUMN PaymentID;
+
+-- xoa rang buoc cua bang Order
+ALTER TABLE [dbo].[Orders]
+DROP CONSTRAINT FK__Orders__PaymentI__68487DD7;
+
+-- xoa bang Payment (Phuong thuc thanh toan)
+DROP TABLE [dbo].[Payment];
+
+-- xoa bang Orders (lam tuong tu nhu phia tren)
+-- chay cau lenh xoa cot sau day de lay ma rang buoc roi copy paste xuong cau lenh phia duoi de xoa rang buoc truoc moi xoa cot duoc
+ALTER TABLE [dbo].[Orders] DROP COLUMN CartID;
+
+-- xoa rang buoc cua bang Order
+ALTER TABLE [dbo].[Orders]
+DROP CONSTRAINT FK__Orders__CartID__693CA210;
+
+-- xoa bang Order 
+DROP TABLE [dbo].[Orders];
+
+
+-- xoa bang CartDetail (lam tuong tu nhu phia tren)
+-- chay cau lenh xoa cot sau day de lay ma rang buoc roi copy paste xuong cau lenh phia duoi de xoa rang buoc truoc moi xoa cot duoc
+ALTER TABLE [dbo].[CartDetail] DROP COLUMN [CartID];
+
+-- xoa rang buoc cua bang CartDetail
+ALTER TABLE [dbo].[CartDetail]
+DROP CONSTRAINT FK__CartDetai__CartI__5FB337D6;
+
+-- xoa bang CartDetail
+DROP TABLE [dbo].[CartDetail];
+
+
+-- xoa bang Cart (lam tuong tu nhu phia tren)
+-- chay cau lenh xoa cot sau day de lay ma rang buoc roi copy paste xuong cau lenh phia duoi de xoa rang buoc truoc moi xoa cot duoc
+ALTER TABLE [dbo].[Cart] DROP COLUMN [AccountID];
+
+-- xoa rang buoc cua bang Cart
+ALTER TABLE [dbo].[Cart]
+DROP CONSTRAINT FK__Cart__AccountID__5AEE82B9;
+
+-- xoa bang Cart
+DROP TABLE [dbo].[Cart];
+
+
+--Tao bang Order
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY IDENTITY(1,3),
+    CustomerID INT NOT NULL,
+    OrderDate DATETIME DEFAULT GETDATE(),
+    TotalAmount DECIMAL(18, 2) NOT NULL, -- tong gia tien hoa don
+    Status BIT CHECK (Status = 0 OR Status = 1), -- 0: Chua thanh toan 1: Da thanh toan
+    ShippingAddress NVARCHAR(255),
+    Note NVARCHAR(255),
+    FOREIGN KEY (CustomerID) REFERENCES CustomerProfile(CustomerID),
+
+);
+
+-- tao bang OrderDetail
+CREATE TABLE OrderDetail (
+    OrderDetailID INT PRIMARY KEY IDENTITY(1,3),
+    OrderID INT NOT NULL,
+    ProductDetailID INT NOT NULL,
+    Quantity INT NOT NULL CHECK(Quantity > 0),
+    UnitPrice DECIMAL(18, 2) NOT NULL CHECK(UnitPrice > 0), --Don gia cua san pham
+	FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
+	FOREIGN KEY (ProductDetailID) REFERENCES [dbo].[ProductDetail]([ProductDetailID])
+);
+
+
+
+
